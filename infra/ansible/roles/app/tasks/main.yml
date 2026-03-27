@@ -1,0 +1,14 @@
+---
+- name: Créer le répertoire d'application
+  file:
+    path: /opt/app
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copier le fichier de configuration
+  template:
+    src: app.env.j2
+    dest: /opt/app/.env
+    mode: '0600'

@@ -1,0 +1,29 @@
+services:
+  controller:
+    image: ansible-ansible
+    container_name: ansible-controller
+    command: sleep infinity
+    volumes:
+      - .:/ansible
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /ansible
+    networks:
+      - ansible-net
+
+  node1:
+    image: ubuntu:22.04
+    container_name: ansible-node1
+    command: sleep infinity
+    networks:
+      - ansible-net
+
+  node2:
+    image: ubuntu:22.04
+    container_name: ansible-node2
+    command: sleep infinity
+    networks:
+      - ansible-net
+
+networks:
+  ansible-net:
+    name: ansible-net
